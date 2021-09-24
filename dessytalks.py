@@ -7,6 +7,7 @@ import requests
 import datetime
 import os
 import ctypes
+import webbrowser
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -52,9 +53,13 @@ while True:
     ### time
     elif 'time' in query:
         time = datetime.datetime.now().strftime('%I:%M %p')
-        speak("It's {time} ")
-    
-    ### celebrity
+        speak(f"It's {time} ")
+        # surf tge net
+    elif 'chrome' in query:
+        chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s'
+        webbrowser.get(chrome_path).open('http://google.com')       
+        speak("Chrome Opened")
+       ### celebrity
     elif 'who is' in query:
         query = query.replace('who is',"")
         speak(wikipedia.summary(query,2))
